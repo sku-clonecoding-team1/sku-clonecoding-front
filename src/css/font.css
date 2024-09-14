@@ -1,0 +1,31 @@
+/*
+font 클래스명
+Noto thin 100
+Noto extralight 200
+Noto light 300
+Noto regular 400
+Noto medium 500
+Noto Semtbold 600
+Noto bold 700
+Noto extrabold 800
+Noto Black 900
+
+font 클래스명
+tailwind : weight : 속성
+font-thin , 100 , thin
+font-extralight , 200 , extralight
+font-light , 300 , Light
+font-normal , 400 , Regular
+font-medium , 500 , Medium
+font-semibold , 600 ,SemiBold
+font-bold , 700 , Bold
+font-extrabold , 800 , ExtraBold
+확인하고 싶으면 여기로 접속
+https://fonts.google.com/noto/specimen/Noto+Sans+KR?query=korea
+*/
+
+.Noto {
+	font-family: "Noto Sans KR", sans-serif;
+	font-optical-sizing: auto;
+	font-style: normal;
+}
