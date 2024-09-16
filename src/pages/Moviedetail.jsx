@@ -41,24 +41,24 @@ const MovieDetail = () => {
 			}
 		};
 		FetchMovies();
-	}, []);
+	}, [movie.id]);
 
 	return (
 		<>
 			<div key={movie.id} className='flex justify-start'>
 				<div>
-					{/* 영화포흐터 */}
+					{/* 영화포스터 */}
 					<img
 						src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
 						alt=''
 					/>
 				</div>
-				<div className='flex flex-col items-center '>
+				<div className='flex flex-col items-center'>
 					{/* 영화 타이틀, 영어 타이틀 */}
 					<div className='mb-[15px]'>
-						<span className='text-[20px]'>
+						<div className='truncate text-[20px]'>
 							{movie.title}
-						</span>
+						</div>
 						<span className='text-[13px]'>
 							{movie.original_title}
 						</span>

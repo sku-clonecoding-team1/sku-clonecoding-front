@@ -11,15 +11,6 @@ const Movieinfo = () => {
 	const navigation = useNavigate();
 	const [searchParams, setSearchParams] = useSearchParams();
 
-	// const getMovieData = async () => {
-	//   try{
-	//     const res = await axios.get(
-	//       "api",
-
-	//     )
-	//   }
-	// }
-
 	useEffect(() => {
 		const FetchMovies = async () => {
 			const options = {
@@ -42,45 +33,57 @@ const Movieinfo = () => {
 		};
 		FetchMovies();
 	}, []);
+
 	return (
 		<>
 			<div className='grid md:grid-cols-2 lg:grid-cols-4 gap-x-28 gap-y-10 my-[20px] mb-[100px]'>
 				{movies.map((movie, id) => (
-					<Link
-						to={`/MovieDetail?id=${id}`}
-						className=' h-full rounded-[30px]'
-						key={movie.id}
-					>
-						<div
-							className={`text-center text-white text-[20px] font-bold rounded-y-[10px] py-[3px] my-[5px] ${
-								id < 3 ? "bg-[#2D6FFF]" : "bg-[#757575]"
-							}`}
-						>
-							No.{id + 1}
-						</div>
-						<img
-							className='w-full h-[300px] drop-shadow-2xl'
-							src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-							alt={movie.title}
-						/>
-						<div className='flex flex-col items-start my-[3px]'>
-							<div className='my-[5px] font-bold'>
-								{movie.title}
+					<div className='h-full rounded-[30px]' key={id}>
+						{id === 3 ? (
+							// id가 3인 경우에는 영화 정보 없이 다른 이미지 표시
+							<div>
+								<img
+									src='img/main/movieinfo/movieinfobanner'
+									alt=''
+								/>
 							</div>
-							<div className='mb-[1px]'>
-								{movie.release_date} 개봉
-							</div>
-							<div className='mb-[3px]'>
-								{movie.vote_average.toFixed(1)}
-							</div>
-							<Link
-								to='/'
-								className='text-white text-[13px] font-semibold bg-[#2D6FFF] rounded-[5px] py-[7px] px-[20px]'
-							>
-								예매하기
-							</Link>
-						</div>
-					</Link>
+						) : (
+							// 나머지 영화 정보 표시
+							<>
+								<div
+									className={`text-center text-white text-[18px] drop-shadow-2xl font-extrabold rounded-t-lg py-[3px] my-[5px] ${
+										id < 3 ? "bg-[#fb4357]" : "bg-[#333333]"
+									}`}
+								>
+									No.{id + 1}
+								</div>
+								<Link to={`/MovieDetail?id=${id}`}>
+									<img
+										className='w-full h-[300px] drop-shadow-2xl'
+										src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+										alt={movie.title}
+									/>
+								</Link>
+								<div className='text-[16px] flex flex-col items-start my-[3px]'>
+									<div className='my-[5px] font-bold'>
+										{movie.title}
+									</div>
+									<div className='text-[13px] text-[#666666] mb-[5px]'>
+										{movie.vote_average.toFixed(1)}
+									</div>
+									<div className='text-[13px] text-[#666666] mb-[5px]'>
+										{movie.release_date} 개봉
+									</div>
+									<Link
+										to={`/MovieDetail?id=${id}`}
+										className='text-white text-[13px] font-semibold bg-[#fb4357] rounded-[6px] py-[5px] px-[20px]'
+									>
+										예매하기
+									</Link>
+								</div>
+							</>
+						)}
+					</div>
 				))}
 			</div>
 		</>

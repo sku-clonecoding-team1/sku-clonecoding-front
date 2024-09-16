@@ -1,15 +1,16 @@
-import React from "react";
+import React, {useState} from "react";
 
 const Movie = () => {
+	const [activebtn, setActiveBtn] = useState("reg");
 	return (
 		<>
 			{/* 영화 */}
-			<div className='relative flex flex-col items-start grid-item a bg-[#F2F0E5] py-[300px]'>
-				<div className='absolute bg-[#333333] text-white w-full py-[15px] top-[0px]'>
+			<div className='relative flex flex-col grid-item a bg-[#F2F0E5] py-[300px]'>
+				<div className='absolute bg-[#333333] text-[#C3C3C3] w-full py-[15px] top-[0px]'>
 					영화
 				</div>
 				{/* 전체, 아트하우스, 특별관 */}
-				<div className='top-nav flex m-[15px]'>
+				<div className='flex top-nav mx-[20px]'>
 					<div>
 						<div>전체</div>
 					</div>
@@ -37,9 +38,16 @@ const Movie = () => {
 					</form>
 				</div>
 				{/* 예매율순, 가나다순 버튼 */}
-				<div className='flex justify-start'>
-					<div className='cursion-pointer'>예매율순</div>
-					<div>가나다순</div>
+				<div className='flex justify-start m-[15px]'>
+					<button
+						id='reg'
+						className='cursor-pointer border-b-[2px] border-[#B4B4B4] focus:border-b-[2px] focus:border-[#333333]'
+					>
+						예매율순
+					</button>
+					<button className='cursor-pointer border-b-[2px] border-[#B4B4B4] focus:border-b-[2px] focus:border-[#333333]'>
+						가나다순
+					</button>
 				</div>
 			</div>
 		</>

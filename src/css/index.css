@@ -37,3 +37,10 @@ input:focus {
 .top-nav {
 	border-bottom: #d4d3c9;
 }
+
+/*텍스트가 div 넘치려고 할 때 ∙∙∙ 처리*/
+.truncate {
+	display: inline-block;
+	text-overflow: ellipsis; /*텍스가 div 넘치려고 할 때 ∙∙∙ 처리*/
+	white-space: nowrap; /*텍스트가 길어서 부모 요소 안의 가로폭을 넘어가더라도 자동으로 줄바꿈 처리 X*/
+}

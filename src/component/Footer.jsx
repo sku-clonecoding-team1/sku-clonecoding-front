@@ -12,12 +12,12 @@ const Footer = () => {
 				</div>
 				<div className='text-[13px] flex'>
 					<span>
-						<b className='text-[#2D6FFF]'>Frontend</b>&nbsp;
+						<b className='text-[#fb4357]'>Frontend</b>&nbsp;
 						노은아
 					</span>
 					&nbsp;&nbsp;
 					<span>
-						<b className='text-[#2D6FFF]'>Backend</b>&nbsp;
+						<b className='text-[#fb4357]'>Backend</b>&nbsp;
 						유진영, 황성윤
 					</span>
 				</div>

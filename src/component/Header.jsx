@@ -37,13 +37,13 @@ const Header = () => {
 					<div className='flex items-end'>
 						<Link to='/Main'>
 							<img
-								className='w-[117px]'
-								src='img/header/likelion_logo.png'
+								className='w-[120px]'
+								src='img/header/CGVlogo.png'
 								alt=''
 							/>
 						</Link>
 						<span className='text-[#222] text-[16px] font-light tracking-[0.4em]'>
-							DEEP DIVE SPACE
+							SKU MOVIE SPACE
 						</span>
 					</div>
 					<div className='flex items-center flex-nowrap'>
