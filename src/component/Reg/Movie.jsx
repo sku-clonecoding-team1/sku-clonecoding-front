@@ -1,7 +1,15 @@
 import React, {useState} from "react";
+import {useNavigate} from "react-router-dom";
 
 const Movie = () => {
 	const [activebtn, setActiveBtn] = useState("reg");
+
+	const navigate = useNavigate();
+
+	const handleClick = (buttonId) => {
+		setActiveBtn(buttonId);
+	};
+
 	return (
 		<>
 			{/* 영화 */}
@@ -41,11 +49,24 @@ const Movie = () => {
 				<div className='flex justify-start m-[15px]'>
 					<button
 						id='reg'
-						className='cursor-pointer border-b-[2px] border-[#B4B4B4] focus:border-b-[2px] focus:border-[#333333]'
+						className={
+							activebtn === "reg"
+								? "border-b-[2px] border-[#B4B4B4]"
+								: "border-b-[2px] border-[#333333]"
+						}
+						onClick={() => handleClick("reg")} // Pass button ID
 					>
 						예매율순
 					</button>
-					<button className='cursor-pointer border-b-[2px] border-[#B4B4B4] focus:border-b-[2px] focus:border-[#333333]'>
+					<button
+						id='abc'
+						className={
+							activebtn === "abc"
+								? "border-b-[2px] border-[#B4B4B4]"
+								: "border-b-[2px] border-[#333333]"
+						}
+						onClick={() => handleClick("abc")} // Pass button ID
+					>
 						가나다순
 					</button>
 				</div>
