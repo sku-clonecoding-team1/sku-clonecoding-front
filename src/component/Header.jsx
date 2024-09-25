@@ -33,9 +33,9 @@ const Header = () => {
 						alt='Banner'
 					/>
 				</div>
-				<div className='flex flex-row justify-between items-center border-b-[1px] border-[#eee] pt-[30px] pb-[25px] px-[200px]'>
+				<div className='flex flex-row justify-between items-center border-b-[1px] border-[#eee] pt-[30px] pb-[25px] px-[250px]'>
 					<div className='flex items-end'>
-						<Link to='/Main'>
+						<Link to='/'>
 							<img
 								className='w-[120px]'
 								src='img/header/CGVlogo.png'

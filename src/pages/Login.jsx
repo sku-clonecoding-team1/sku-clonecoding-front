@@ -46,7 +46,7 @@ const Login = () => {
 		}
 		try {
 			const response = await axios.post(
-				`api주소 나중에 넣어라!!!!!`,
+				`http://localhost:8080/logIn`,
 				{
 					header: {
 						Authorization: `Bearer ${cookies.token}`,

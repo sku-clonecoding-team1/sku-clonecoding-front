@@ -1,88 +1,69 @@
 import React, {useEffect, useState} from "react";
+import {useSearchParams} from "react-router-dom";
 import axios from "axios";
-import {
-	useNavigate,
-	useSearchParams,
-} from "react-router-dom";
 
 const MovieDetail = () => {
-	const [movie, setMovie] = useState({
-		id: "",
-		title: "",
-		original_title: "",
-		vote_average: "",
-		release_date: "",
-		genre_ids: "",
-		adult: "",
-		overview: "",
-		poster_path: "",
-	});
-	const navigation = useNavigate();
-	const [searchParams, setSearchParams] = useSearchParams();
+	const [movie, setMovie] = useState(null);
+	const [searchParams] = useSearchParams();
+	const movieId = searchParams.get("id");
+	console.log("Selected Movie ID:", movieId);
 
 	useEffect(() => {
-		const FetchMovies = async () => {
-			const options = {
-				method: "GET",
-				url: `https://api.themoviedb.org/3/movie/popular${movie.id}`,
-				params: {language: "ko-kr", page: "1", id: ""},
-				headers: {
-					accept: "application/json",
-					Authorization:
-						"Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkMGNhNGQyMmVjODk5ZTJhMTZjMTcyY2JkZDlmMDg4MyIsIm5iZiI6MTcyMDY2MTkwMi41MDkyODUsInN1YiI6IjY2OGYzNjNjNGE4NTIyMGFhZWU2ZTQzMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.h77cby9sICrCG41NN3Osp_hm0rMGi2JBgaz_G1aGsBU",
-				},
-			};
-			try {
-				const response = await axios.request(options);
-				setMovie(response.data.results);
-				console.log(response.data.results);
-			} catch (error) {
-				console.log("api를 불러오지 못했습니다.", error);
+		const fetchMovieDetails = async () => {
+			if (movieId) {
+				try {
+					const response = await axios.get(
+						`https://api.themoviedb.org/3/movie/${movieId}`,
+						{
+							params: {language: "ko-kr"},
+							headers: {
+								accept: "application/json",
+								Authorization:
+									"Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkMGNhNGQyMmVjODk5ZTJhMTZjMTcyY2JkZDlmMDg4MyIsIm5iZiI6MTcyMDY2MTkwMi41MDkyODUsInN1YiI6IjY2OGYzNjNjNGE4NTIyMGFhZWU2ZTQzMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.h77cby9sICrCG41NN3Osp_hm0rMGi2JBgaz_G1aGsBU",
+							},
+						}
+					);
+					setMovie(response.data);
+				} catch (error) {
+					console.error(
+						"영화 정보를 불러오는 데 실패했습니다.",
+						error
+					);
+				}
 			}
 		};
-		FetchMovies();
-	}, [movie.id]);
+
+		fetchMovieDetails();
+	}, [movieId]);
+
+	if (!movie) return <div>로딩 중...</div>;
 
 	return (
-		<>
-			<div key={movie.id} className='flex justify-start'>
-				<div>
-					{/* 영화포스터 */}
-					<img
-						src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-						alt=''
-					/>
-				</div>
-				<div className='flex flex-col items-center'>
-					{/* 영화 타이틀, 영어 타이틀 */}
-					<div className='mb-[15px]'>
-						<div className='truncate text-[20px]'>
-							{movie.title}
-						</div>
-						<span className='text-[13px]'>
-							{movie.original_title}
-						</span>
-					</div>
-					{/* 영화 평점, 개봉일 */}
-					<div className='flex justify-center'>
-						<span className='mr-[10px]'>
-							평점: {movie.vote_average}
-						</span>
-						<div className='w-[1px] h-[20px] bg-[#cacaca] mx-[8px]'></div>
-						<span className='ml-[10px]'>
-							개봉일: {movie.release_date}
-						</span>
-						<hr />
-					</div>
-					{/* 영화 장르 */}
-					<div>장르: </div>
-					{/* 영화 개요 및 설명 */}
-					<div>
-						<span>{movie.overview}</span>
-					</div>
-				</div>
+		<div className='flex justify-start'>
+			<div>
+				<img
+					src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+					alt={movie.title}
+				/>
 			</div>
-		</>
+			<div className='flex flex-col items-start ml-5'>
+				<h2 className='text-2xl'>{movie.title}</h2>
+				<p>{movie.original_title}</p>
+				<div className='flex'>
+					<span className='mr-2'>
+						평점: {movie.vote_average}
+					</span>
+					<span>개봉일: {movie.release_date}</span>
+				</div>
+				<div>
+					장르:{" "}
+					{movie.genres
+						.map((genre) => genre.name)
+						.join(", ")}
+				</div>
+				<div>개요: {movie.overview}</div>
+			</div>
+		</div>
 	);
 };
 
