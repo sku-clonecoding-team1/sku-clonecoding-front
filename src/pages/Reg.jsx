@@ -1,5 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, {useEffect, useState} from "react";
+import React, {
+	useEffect,
+	useReducer,
+	useRef,
+	useState,
+} from "react";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import Movie from "../component/Reg/Movie";
@@ -10,10 +15,19 @@ import Room from "../component/Reg/Room";
 const Reg = () => {
 	const [selectedData, setSelectedData] = useState({
 		movie: "",
+		poster_path: "",
 		theater: "",
 		locationDetail: "",
 		date: "",
 	});
+
+	// const RegBtn = useRef(null);
+
+	// useEffect(() => {
+	// 	if (RegBtn) {
+	// 		RegBtn.current.click(); // 클릭 이벤트 트리거
+	// 	}
+	// }, []);
 
 	const {movie, locationDetail, date, theater} =
 		selectedData;
@@ -87,15 +101,25 @@ const Reg = () => {
 					<Time />
 				</div>
 			</div>
-			<div className='bg-[#1D1D1C] w-full h-[128px]'>
-				<div className='flex items-center px-[250px]'>
-					<div className='w-[212px] h-full text-[white] flex justify-center items-center'>
-						<div>
-							<span>영화선택</span>
-							{selectedData.movie}
-						</div>
-						<div>{selectedData.locationDetail}</div>
-						<div>{selectedData.date}</div>
+			<div className='bg-[#1D1D1C] flex items-center px-[250px] w-full h-[128px]'>
+				<div className='h-full text-[white] flex justify-center items-center'>
+					<div className='w-[212px] flex justify-center'>
+						<span>영화선택</span>
+						<img
+							className='w-[74px] h-[104px] drop-shadow-2xl'
+							src={`https://image.tmdb.org/t/p/w500${selectedData.poster_path}`}
+							alt=''
+							style={{maxWidth: "100%"}}
+						/>
+						{selectedData.movie}
+					</div>
+					<div className='w-[212px] flex flex-col items-start justify-center pl-[10px] text-[12px]'>
+						<span>
+							극장 CGV {selectedData.locationDetail}
+						</span>
+						<span>일시 {selectedData.date}</span>
+						<span>상영관 </span>
+						<span>인원</span>
 					</div>
 				</div>
 			</div>

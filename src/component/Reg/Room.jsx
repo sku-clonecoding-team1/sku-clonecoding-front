@@ -3,8 +3,11 @@ import axios from "axios";
 import {loacation} from "../../constants/Location";
 
 const Room = ({onSelect}) => {
-	const [movies, setMovies] = useState([]); // 배열로 초기화
+	const [movies, setMovies] = useState([]);
 	const [activeBtn, setActiveBtn] = useState(0);
+
+	// Reg 버튼 클릭 동작 생성
+	const [regBtn, setRegActiveBtn] = useState(0);
 
 	// autofoucs 속성 적용하기 (서울극장 포커스하기)
 	const firstButtonRef = useRef(null); // 첫번째 버튼에 대한 ref 생성
@@ -73,7 +76,7 @@ const Room = ({onSelect}) => {
 										handleClick(i);
 										getNumber(i);
 									}}
-									className={`location bg-[#E6E4D9] flex items-center justify-end cursor-pointer m-[1px] px-[5px] py-[6px] ${
+									className={`location bg-[#E6E4D9] flex items-center justify-end cursor-pointer m-[1px] p-[5px] m-[1px] ${
 										activeBtn === i ? "bg-[#f2f0e5]" : "" // 클릭된 버튼은 색상이 바뀜
 									}`}
 									ref={i === 0 ? firstButtonRef : null} // 첫번째 버튼에 ref를 적용
@@ -89,13 +92,14 @@ const Room = ({onSelect}) => {
 							if (locationNum === i) {
 								return (
 									<div
-										className='scroll-box flex flex-col items-start w-[114px] h-[450px]'
+										className='scroll-box flex flex-col items-start w-[114px] h-[450px] overflow-x-hidden'
 										key={i}
 									>
 										{m.list.map((d, i) => (
 											<div
 												key={i}
-												className=' text-start px-[5px] py-[6px]'
+												className='w-full text-start px-[5px] py-[6px] cursor-pointer focus:bg-[#333333] focus:text-[white] focus:border-[1px] focus:border-[#5c5c5c] focus:p-[5px] focus:m-[1px]'
+												tabIndex={0} // 포커스를 받을 수 있도록 tabIndex 추가
 												onClick={() => {
 													getDetailTheater(i + 1);
 													onSelect("locationDetail", d);

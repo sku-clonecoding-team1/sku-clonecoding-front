@@ -82,16 +82,16 @@ const Movie = ({onSelect}) => {
 						>
 							가나다순
 						</button>
-					</div>{" "}
+					</div>
 					{/* 영화 선택 */}
 					<div className='scroll-box flex flex-col items-start w-full h-[430px]'>
 						{movies.map((movie) => (
 							<div
 								key={movie.id}
-								className='RegBtn text-[12px] font-bold py-[10px] cursor-pointer'
+								className='w-full text-[12px] font-bold py-[10px] cursor-pointer  focus:bg-[#333333] focus:text-[white] focus:border-[1px] focus:border-[#5c5c5c] focus:p-[5px] focus:m-[1px]'
 								// onClick={}
 								onClick={() =>
-									onSelect("movie", movie.title)
+									onSelect("movie", movie.title, movie)
 								}
 							>
 								{movie.title}
