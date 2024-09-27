@@ -80,13 +80,13 @@ const Room = ({onSelect}) => {
 							if (locationNum === i) {
 								return (
 									<div
-										className='scroll-box flex flex-col items-start w-[114px] h-[450px]'
+										className='scroll-box flex flex-col items-start w-[114px] h-[450px] overflow-x-hidden'
 										key={i}
 									>
 										{m.list.map((d, i) => (
 											<div
 												key={i}
-												className=' text-start px-[5px] py-[6px]'
+												className='truncate nanum-b min-h-[30px] text-start text-[12px] px-[5px] py-[6px] m-[1px] text-[#333333] font-bold cursor-pointer'
 												onClick={() => {
 													getDetailTheater(i + 1);
 													onSelect("locationDetail", d);
