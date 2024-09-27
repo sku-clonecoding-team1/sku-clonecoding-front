@@ -41,10 +41,11 @@ input:focus {
 
 /*텍스트가 div 넘치려고 할 때 ∙∙∙ 처리*/
 .truncate {
-	display: inline-block;
-	text-overflow: ellipsis; /*텍스가 div 넘치려고 할 때 ∙∙∙ 처리*/
-	white-space: nowrap; /*텍스트가 길어서 부모 요소 안의 가로폭을 넘어가더라도 자동으로 줄바꿈 처리 X*/
-	width: 100%; /* 요소의 너비를 명시적으로 지정 */
+	display: block; /* inline-block을 block으로 변경 */
+	text-overflow: ellipsis;
+	white-space: nowrap; /* 필요에 따라 nowrap을 제거 */
+	overflow: hidden;
+	width: 100%; /* 부모 요소에 맞춰 확장 */
 }
 
 .ticketBox {

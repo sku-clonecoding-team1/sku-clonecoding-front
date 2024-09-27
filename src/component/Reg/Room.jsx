@@ -1,24 +1,17 @@
 import React, {useEffect, useRef, useState} from "react";
 import axios from "axios";
 import {loacation} from "../../constants/Location";
-
 const Room = ({onSelect}) => {
-	const [movies, setMovies] = useState([]);
+	const [movies, setMovies] = useState([]); // 배열로 초기화
 	const [activeBtn, setActiveBtn] = useState(0);
-
-	// Reg 버튼 클릭 동작 생성
-	const [regBtn, setRegActiveBtn] = useState(0);
-
 	// autofoucs 속성 적용하기 (서울극장 포커스하기)
 	const firstButtonRef = useRef(null); // 첫번째 버튼에 대한 ref 생성
-
 	useEffect(() => {
 		if (firstButtonRef.current) {
 			// firstButtonRef.current.focus(); // 첫번째 버튼에 포커스 주기
 			firstButtonRef.current.click(); // 클릭 이벤트 트리거
 		}
 	}, []);
-
 	const handleClick = (buttonId) => {
 		// 첫 번째 버튼(서울)만 초기 활성화 상태로 남기고, 이후에는 상태 업데이트 안함
 		if (activeBtn !== 0 || buttonId !== 0) {
@@ -26,22 +19,17 @@ const Room = ({onSelect}) => {
 		}
 		onSelect("room", loacation[buttonId].locationName); // 선택한 극장 데이터 전달
 	};
-
 	const [locationNum, setLocationNum] = useState(null);
 	const [locationDetail, setLocationDetail] = useState([]);
-
 	function getNumber(num) {
 		setLocationNum(num);
 	}
-
 	function getDetailTheater(theater) {
 		setLocationDetail(theater);
 	}
-
 	useEffect(() => {
 		console.log("locationDetail: ", locationDetail);
 	}, [locationDetail]);
-
 	return (
 		<>
 			{/* 극장 */}
@@ -76,7 +64,7 @@ const Room = ({onSelect}) => {
 										handleClick(i);
 										getNumber(i);
 									}}
-									className={`location bg-[#E6E4D9] flex items-center justify-end cursor-pointer m-[1px] p-[5px] m-[1px] ${
+									className={`location bg-[#E6E4D9] flex items-center justify-end cursor-pointer m-[1px] px-[5px] py-[6px] ${
 										activeBtn === i ? "bg-[#f2f0e5]" : "" // 클릭된 버튼은 색상이 바뀜
 									}`}
 									ref={i === 0 ? firstButtonRef : null} // 첫번째 버튼에 ref를 적용
@@ -98,8 +86,7 @@ const Room = ({onSelect}) => {
 										{m.list.map((d, i) => (
 											<div
 												key={i}
-												className='w-full text-start px-[5px] py-[6px] cursor-pointer focus:bg-[#333333] focus:text-[white] focus:border-[1px] focus:border-[#5c5c5c] focus:p-[5px] focus:m-[1px]'
-												tabIndex={0} // 포커스를 받을 수 있도록 tabIndex 추가
+												className='truncate nanum-b min-h-[30px] text-start text-[12px] px-[5px] py-[6px] m-[1px] text-[#333333] font-bold cursor-pointer'
 												onClick={() => {
 													getDetailTheater(i + 1);
 													onSelect("locationDetail", d);
@@ -118,5 +105,4 @@ const Room = ({onSelect}) => {
 		</>
 	);
 };
-
 export default Room;

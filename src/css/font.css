@@ -29,3 +29,21 @@ https://fonts.google.com/noto/specimen/Noto+Sans+KR?query=korea
 	font-optical-sizing: auto;
 	font-style: normal;
 }
+
+.nanum-r {
+	font-family: "Nanum Gothic", sans-serif;
+	font-weight: 400;
+	font-style: normal;
+}
+
+.nanum-b {
+	font-family: "Nanum Gothic", sans-serif;
+	font-weight: 700;
+	font-style: normal;
+}
+
+.nanum-extrabold {
+	font-family: "Nanum Gothic", sans-serif;
+	font-weight: 800;
+	font-style: normal;
+}
