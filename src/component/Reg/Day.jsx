@@ -50,7 +50,7 @@ const Day = ({onSelect}) => {
 				<div className='bg-[#333333] text-white w-full py-[10px]'>
 					날짜
 				</div>
-				<div className='ticketBox scroll-box flex flex-col h-[480px]'>
+				<div className='scroll-box flex flex-col h-[480px] m-[20px]'>
 					{list.length > 0 &&
 						list.map((l, i) => (
 							<div
@@ -61,13 +61,13 @@ const Day = ({onSelect}) => {
 								{i === 0 ||
 								(i > 0 && list[i - 1].month !== l.month) ? (
 									<div
-										className='flex flex-col items-center'
+										className='flex flex-col items-center mt-[12px]'
 										onClick={() => onSelect("date", l)}
 									>
 										<span className='text-[#666] text-[11px]'>
 											{l.year}
 										</span>
-										<span className='text-[#666] text-[30px]'>
+										<span className='text-[#666] text-[30px] font-extrabold'>
 											{l.month}
 										</span>
 									</div>
@@ -75,13 +75,39 @@ const Day = ({onSelect}) => {
 
 								{/* 날짜와 요일 표시 */}
 								<div
-									className='flex items-center px-[8px] text-[14px] text-[#333] py-[10px]'
+									className='w-full flex items-center px-[8px] text-[14px] text-[#333] py-[10px] cursor-pointer focus:bg-[#333333] focus:text-[white] focus:border-[1px] focus:border-[#5c5c5c] focus:p-[5px] focus:m-[1px]'
 									onClick={() =>
-										onSelect("date", `${l.date}/${l.day}`)
+										onSelect(
+											"date",
+											`${l.year}.${l.month}.${l.date}(${l.day})`
+										)
 									}
 								>
-									<span>{l.day}</span>
-									<span>{l.date}</span>
+									<span
+										className='pr-[15px]'
+										style={{
+											color:
+												l.day === "토" || l.day === "일"
+													? l.day === "토"
+														? "#31597e"
+														: "#ad2727"
+													: "black",
+										}}
+									>
+										{l.day}
+									</span>
+									<span
+										style={{
+											color:
+												l.day === "토" || l.day === "일"
+													? l.day === "토"
+														? "#31597e"
+														: "#ad2727"
+													: "black",
+										}}
+									>
+										{l.date}
+									</span>
 								</div>
 							</div>
 						))}

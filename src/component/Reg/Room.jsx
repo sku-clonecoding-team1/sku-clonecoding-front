@@ -1,21 +1,17 @@
 import React, {useEffect, useRef, useState} from "react";
 import axios from "axios";
 import {loacation} from "../../constants/Location";
-
 const Room = ({onSelect}) => {
 	const [movies, setMovies] = useState([]); // 배열로 초기화
 	const [activeBtn, setActiveBtn] = useState(0);
-
 	// autofoucs 속성 적용하기 (서울극장 포커스하기)
 	const firstButtonRef = useRef(null); // 첫번째 버튼에 대한 ref 생성
-
 	useEffect(() => {
 		if (firstButtonRef.current) {
 			// firstButtonRef.current.focus(); // 첫번째 버튼에 포커스 주기
 			firstButtonRef.current.click(); // 클릭 이벤트 트리거
 		}
 	}, []);
-
 	const handleClick = (buttonId) => {
 		// 첫 번째 버튼(서울)만 초기 활성화 상태로 남기고, 이후에는 상태 업데이트 안함
 		if (activeBtn !== 0 || buttonId !== 0) {
@@ -23,22 +19,17 @@ const Room = ({onSelect}) => {
 		}
 		onSelect("room", loacation[buttonId].locationName); // 선택한 극장 데이터 전달
 	};
-
 	const [locationNum, setLocationNum] = useState(null);
 	const [locationDetail, setLocationDetail] = useState([]);
-
 	function getNumber(num) {
 		setLocationNum(num);
 	}
-
 	function getDetailTheater(theater) {
 		setLocationDetail(theater);
 	}
-
 	useEffect(() => {
 		console.log("locationDetail: ", locationDetail);
 	}, [locationDetail]);
-
 	return (
 		<>
 			{/* 극장 */}
@@ -114,5 +105,4 @@ const Room = ({onSelect}) => {
 		</>
 	);
 };
-
 export default Room;
