@@ -12,7 +12,8 @@ input:focus {
 	border: solid 2px #2d6fff;
 	outline: none;
 }
-4 #hidden {
+
+#hidden {
 	display: none;
 }
 
@@ -30,12 +31,12 @@ input:focus {
 
 .ticket {
 	display: grid;
+	grid-template-columns: 2fr 2fr 1fr 2fr;
 	grid-template-areas: "a a b b c d d";
-	grid-template-columns: repeat(1, 2fr 2fr 1fr 2fr);
 }
 
-.top-nav {
-	border-bottom: #d4d3c9;
+.grid-item {
+	/* width: 284px; */
 }
 
 /*텍스트가 div 넘치려고 할 때 ∙∙∙ 처리*/
@@ -43,4 +44,40 @@ input:focus {
 	display: inline-block;
 	text-overflow: ellipsis; /*텍스가 div 넘치려고 할 때 ∙∙∙ 처리*/
 	white-space: nowrap; /*텍스트가 길어서 부모 요소 안의 가로폭을 넘어가더라도 자동으로 줄바꿈 처리 X*/
+	width: 100%; /* 요소의 너비를 명시적으로 지정 */
+}
+
+.ticketBox {
+	margin: 20px 20px;
+}
+
+/* .scroll-box {
+	overflow-y: scroll;
+} */
+
+.scroll-box {
+	/* width: 250px; */
+	overflow-y: scroll; /*  */
+}
+
+/* 스크롤바의 폭 너비 */
+.scroll-box::-webkit-scrollbar {
+	width: 6px;
+	height: 50px;
+}
+
+.scroll-box::-webkit-scrollbar-thumb {
+	background: #797872; /* 스크롤바 색상 */
+	border-radius: 10px; /* 스크롤바 둥근 테두리 */
+}
+
+//예약할때 버튼 디자인
+.RegBtn {
+	border: 1px solid #5c5c5c;
+	height: 25px;
+	line-height: 25px;
+	margin: 1px;
+	color: #fff;
+	padding-left: 5px;
+	padding-right: 5px;
 }

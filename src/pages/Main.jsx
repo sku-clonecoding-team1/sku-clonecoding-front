@@ -6,7 +6,7 @@ import Movieinfo from "../component/Movieinfo/Movieinfo";
 const Main = () => {
 	return (
 		<>
-			<div className='px-[200px]'>
+			<div className='px-[250px]'>
 				{/* main header */}
 				<div className='flex justify-between items-end border-b-[2px] border-[#222] pt-[30px] pb-[20px]'>
 					<span className='text-[36px] text-[#222] font-semibold'>
@@ -22,7 +22,7 @@ const Main = () => {
 								src='img/main/Mainheaderplay.png'
 								alt=''
 							/>
-							<span className='text-[#fb4357]'>
+							<span className='text-[13px] text-[#fb4357]'>
 								무비차트
 							</span>
 						</NavLink>
@@ -33,14 +33,14 @@ const Main = () => {
 								src='img/main/Mainheaderplay.png'
 								alt=''
 							/>
-							<span className='text-[#666]'>
+							<span className='text-[13px] text-[#666]'>
 								상영예상작
 							</span>
 						</NavLink>
 					</div>
 				</div>
 				{/* 조건검색 header */}
-				<div className='flex justify-between items-center px-[5px] pt-[25px] pb-[20px]'>
+				<div className='flex justify-between items-center px-[5px] pt-[15px] pb-[20px]'>
 					<div className='flex'>
 						<input type='checkbox' />
 						<span className='text-[15px] text-[#666] ml-[5px]'>
@@ -49,7 +49,7 @@ const Main = () => {
 					</div>
 					<form>
 						<select
-							className='border-[1px] border-[#b4b3aa] bg-white px-[6px] py-[4px] mr-[2px]'
+							className='w-[81px] h-[29px] border-[1px] border-[#b4b3aa] bg-white px-[6px] py-[4px] mr-[2px] text-[13px]'
 							name=''
 							id=''
 						>
@@ -60,7 +60,7 @@ const Main = () => {
 						<input
 							type='submit'
 							value='Go'
-							className='border-[1px] border-[#b4b3aa] bg-white px-[6px] py-[4px] ml-[2px]'
+							className='text-[12px] border-[1px] border-[#b4b3aa] bg-white px-[6px] py-[4px] ml-[2px]'
 						/>
 					</form>
 				</div>

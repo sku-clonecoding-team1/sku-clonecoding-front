@@ -11,7 +11,7 @@ export default function Nav() {
 
 	return (
 		<>
-			<div className='text-[18px] text-[#222] font-semibold flex flex-row justify-between items-center border-b-[3px] border-[#fb4357] px-[200px] py-[20px]'>
+			<div className='text-[16px] text-[#222] font-semibold flex flex-row justify-between items-center border-b-[3px] border-[#fb4357] px-[250px] py-[15px]'>
 				<ul className='flex'>
 					<li
 						onClick={() => handleNavClick("/Main")}
