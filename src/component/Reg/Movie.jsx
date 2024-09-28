@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import axios from "axios";
 
 const Movie = ({onSelect}) => {
+	const Ltoken = localStorage.getItem("token");
 	const [movies, setMovies] = useState([]); // 배열로 초기화
 	const [activeBtn, setActiveBtn] = useState(null);
 
@@ -9,27 +10,33 @@ const Movie = ({onSelect}) => {
 		setActiveBtn(buttonId);
 	};
 
-	useEffect(() => {
-		const FetchMovies = async () => {
-			const options = {
-				method: "GET",
-				url: "https://api.themoviedb.org/3/movie/popular",
-				params: {language: "ko-kr", page: "1"},
-				headers: {
-					accept: "application/json",
-					Authorization:
-						"Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkMGNhNGQyMmVjODk5ZTJhMTZjMTcyY2JkZDlmMDg4MyIsIm5iZiI6MTcyMDY2MTkwMi41MDkyODUsInN1YiI6IjY2OGYzNjNjNGE4NTIyMGFhZWU2ZTQzMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.h77cby9sICrCG41NN3Osp_hm0rMGi2JBgaz_G1aGsBU",
-				},
-			};
-			try {
-				const response = await axios.request(options);
-				setMovies(response.data.results);
-				console.log(response.data.results);
-			} catch (error) {
-				console.log("api를 불러오지 못했습니다.", error);
+	const FetchMovies = async () => {
+		try {
+			const response = await axios.get(
+				"http://localhost:8080/getMoviePage/1",
+				{
+					headers: {
+						Authorization: `Bearer ${Ltoken}`,
+					},
+				}
+			);
+			if (response.status === 200) {
+				setMovies(response.data.results || response.data); // 영화 데이터를 배열로 설정
+				console.log("data get:", response.data);
+			} else {
+				console.error(
+					"조건이 충족되지 않음",
+					response.data
+				);
 			}
-		};
-		FetchMovies();
+		} catch (error) {
+			console.log("오류", error);
+			console.log("실패");
+		}
+	};
+
+	useEffect(() => {
+		FetchMovies(); // 컴포넌트가 마운트될 때 영화 데이터 가져오기
 	}, []);
 
 	return (
@@ -39,19 +46,17 @@ const Movie = ({onSelect}) => {
 				<div className='bg-[#333333] text-[#C3C3C3] w-full py-[10px]'>
 					영화
 				</div>
-				<div className='ticketBox'>
+				<div className='m-[20px]'>
 					{/* 전체, 아트하우스, 특별관 */}
-					<div className='flex flex-row items-center w-fit mb-[3px]'>
-						<div className='px-[5px]'>
+					<div className='flex flex-row items-center justify-center w-fit mb-[3px]'>
+						<div className='flex items-center justify-center w-[58px] h-[28px] border-x-[2px] border-t-[2px] border-[#252526]'>
 							<button>전체</button>
 						</div>
-						<form>
-							<select className='px-[2px] text-center text-[black] bg-inherit flex items-start text-white focus:bg-[#292929] focus:text-[white]'>
-								<option value=''>아트하우스</option>
-								{/* 다른 옵션들 */}
-							</select>
-						</form>
-						<form>
+						<select className='flex items-center justify-center w-[90px] h-[28px] border-b-[2px] border-b-[#252526] border-t-[#AAA9A0] border-t-[2px] border-r-[2px] border-r-[#AAA9A0]'>
+							<option value=''>아트하우스</option>
+							{/* 다른 옵션들 */}
+						</select>
+						<form className='flex items-center justify-center w-[90px] h-[28px] border-b-[2px] border-b-[#252526]'>
 							<select className='px-[2px] text-center bg-inherit'>
 								<option value=''>특별관</option>
 								{/* 다른 옵션들 */}
@@ -87,8 +92,8 @@ const Movie = ({onSelect}) => {
 					<div className='scroll-box flex flex-col items-start w-full h-[430px] overflow-x-hidden'>
 						{movies.map((movie) => (
 							<div
-								key={movie.id}
-								className='nanum-b w-full truncate min-h-[30px] text-start text-[12px] font-bold py-[10px] cursor-pointer  focus:bg-[#333333] focus:text-[white] focus:border-[1px] focus:border-[#5c5c5c] focus:p-[5px] focus:m-[1px]'
+								key={movie.movieId}
+								className='truncate nanum-b w-full min-h-[30px] text-start text-[12px] font-bold py-[10px] cursor-pointer  focus:bg-[#333333] focus:text-[white] focus:border-[1px] focus:border-[#5c5c5c] focus:p-[5px] focus:m-[1px]'
 								// onClick={}
 								onClick={() =>
 									onSelect("movie", movie.title, movie)

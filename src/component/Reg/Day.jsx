@@ -50,7 +50,7 @@ const Day = ({onSelect}) => {
 				<div className='bg-[#333333] text-white w-full py-[10px]'>
 					날짜
 				</div>
-				<div className='scroll-box flex flex-col h-[480px] m-[20px]'>
+				<div className='scroll-box flex flex-col items-center h-[480px] m-[20px]'>
 					{list.length > 0 &&
 						list.map((l, i) => (
 							<div
@@ -84,7 +84,7 @@ const Day = ({onSelect}) => {
 									}
 								>
 									<span
-										className='pr-[15px]'
+										className='nanum-r pr-[15px]'
 										style={{
 											color:
 												l.day === "토" || l.day === "일"
