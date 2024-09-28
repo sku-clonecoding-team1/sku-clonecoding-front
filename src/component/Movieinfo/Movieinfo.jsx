@@ -17,7 +17,7 @@ const Movieinfo = () => {
 		if (!releaseDate) return "N/A"; // releaseDate가 없을 때 처리
 		const release = new Date(releaseDate);
 		const today = new Date();
-		const diffTime = release - today;
+		const diffTime = today - release;
 		const diffDays = Math.ceil(
 			diffTime / (1000 * 60 * 60 * 24)
 		);
@@ -60,6 +60,8 @@ const Movieinfo = () => {
 		FetchMovies(); // 컴포넌트가 마운트될 때 영화 데이터 가져오기
 	}, []);
 
+	console.log("Poster Path:", movies.posterPath); // 포스터 경로 로그 확인
+
 	return (
 		<>
 			<div className='grid md:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-10 pb-[40px] pt-[10px]'>
@@ -88,7 +90,7 @@ const Movieinfo = () => {
 								>
 									<img
 										className='w-[197px] h-[260px] drop-shadow-2xl'
-										src={`https://image.tmdb.org/t/p/w500${movie.posterPath}`}
+										src={`http://localhost:8080/getMoviePage/1${movie.posterPath}`}
 										alt={movie.title}
 										style={{maxWidth: "100%"}}
 									/>

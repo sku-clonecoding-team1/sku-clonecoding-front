@@ -64,7 +64,7 @@ const Room = ({onSelect}) => {
 										handleClick(i);
 										getNumber(i);
 									}}
-									className={`location bg-[#E6E4D9] flex items-center justify-end cursor-pointer m-[1px] px-[5px] py-[6px] ${
+									className={`nanum-r location bg-[#E6E4D9] flex items-center justify-end cursor-pointer m-[1px] px-[5px] py-[6px] ${
 										activeBtn === i ? "bg-[#f2f0e5]" : "" // 클릭된 버튼은 색상이 바뀜
 									}`}
 									ref={i === 0 ? firstButtonRef : null} // 첫번째 버튼에 ref를 적용

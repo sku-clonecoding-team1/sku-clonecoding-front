@@ -13,6 +13,7 @@ import Time from "../component/Reg/Time";
 import Room from "../component/Reg/Room";
 
 const Reg = () => {
+	const Ltoken = localStorage.getItem("token");
 	const [selectedData, setSelectedData] = useState({
 		movie: "",
 		poster_path: "",
@@ -43,7 +44,12 @@ const Reg = () => {
 	const handleBooking = async () => {
 		try {
 			const response = await axios.post(
-				"백엔드_엔드포인트",
+				"http://localhost:8080/getMovieSchedule",
+				{
+					headers: {
+						Authorization: `Bearer ${Ltoken}`,
+					},
+				},
 				{
 					movie,
 					locationDetail,
@@ -59,7 +65,7 @@ const Reg = () => {
 	const getTheater = async () => {
 		try {
 			const response = await axios.get(
-				"백엔드_엔드포인트",
+				"http://localhost:8080/getMovieScheduleAll",
 				{
 					theater,
 				}
@@ -102,25 +108,50 @@ const Reg = () => {
 				</div>
 			</div>
 			<div className='bg-[#1D1D1C] flex items-center px-[250px] w-full h-[128px]'>
-				<div className='h-full text-[white] flex justify-center items-center'>
-					<div className='w-[212px] flex justify-center'>
-						<span>영화선택</span>
+				<div className='h-full text-[white] flex justify-center items-center text-[12px] py-[20px]'>
+					<div className='w-[212px] flex flex-col items-start justify-start px-[30px]'>
+						{selectedData.movie ? (
+							<div className='flex'>
+								<img
+									className=' w-[74px] h-[104px] drop-shadow-2xl'
+									src={`https://image.tmdb.org/t/p/w500${selectedData.poster_path}`} // poster_path를 사용
+									alt={selectedData.movie}
+									style={{maxWidth: "100%"}}
+								/>
+								{selectedData.movie}
+							</div>
+						) : (
+							<img
+								className='w-[100px]'
+								src='img/reg/Reg_steps1.png'
+								alt=''
+							/>
+						)}
+					</div>
+					{selectedData.locationDetail ||
+					selectedData.date ||
+					selectedData.theater ? (
+						<div className='w-[212px] flex flex-col items-start justify-start border-solid-[1px] border-[#2D2D2B] px-[30px]'>
+							{selectedData.locationDetail ? (
+								<span>
+									극장 CGV {selectedData.locationDetail}
+								</span>
+							) : (
+								<span>
+									극장 {selectedData.locationDetail}
+								</span>
+							)}
+							<span>일시 {selectedData.date}</span>
+							<span>상영관 </span>
+							<span>인원</span>
+						</div>
+					) : (
 						<img
-							className='w-[74px] h-[104px] drop-shadow-2xl'
-							src={`https://image.tmdb.org/t/p/w500${selectedData.poster_path}`}
+							className='w-[100px]'
+							src='img/reg/Reg_steps2.png'
 							alt=''
-							style={{maxWidth: "100%"}}
 						/>
-						{selectedData.movie}
-					</div>
-					<div className='w-[212px] flex flex-col items-start justify-center pl-[10px] text-[12px]'>
-						<span>
-							극장 CGV {selectedData.locationDetail}
-						</span>
-						<span>일시 {selectedData.date}</span>
-						<span>상영관 </span>
-						<span>인원</span>
-					</div>
+					)}
 				</div>
 			</div>
 		</>
