@@ -75,11 +75,12 @@ const Day = ({onSelect}) => {
 
 								{/* 날짜와 요일 표시 */}
 								<div
-									className='w-full flex items-center px-[8px] text-[14px] text-[#333] py-[10px] cursor-pointer focus:bg-[#333333] focus:text-[white] focus:border-[1px] focus:border-[#5c5c5c] focus:p-[5px] focus:m-[1px]'
+									tabIndex='0'
+									className='regbtn w-full flex items-center px-[8px] text-[14px] text-[#333] py-[10px] cursor-pointer focus:bg-[#333333] focus:text-[white] focus:border-[1px] focus:border-[#5c5c5c] focus:p-[5px] focus:m-[1px]'
 									onClick={() =>
 										onSelect(
 											"date",
-											`${l.year}.${l.month}.${l.date}(${l.day})`
+											`${l.year}-${l.month}-${l.date}-${l.day}`
 										)
 									}
 								>

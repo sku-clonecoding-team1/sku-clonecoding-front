@@ -56,7 +56,7 @@ const Movie = ({onSelect}) => {
 							<option value=''>아트하우스</option>
 							{/* 다른 옵션들 */}
 						</select>
-						<form className='flex items-center justify-center w-[90px] h-[28px] border-b-[2px] border-b-[#252526]'>
+						<form className='flex items-center justify-center w-[88px] h-[28px] border-b-[2px] border-b-[#252526] border-t-[#AAA9A0] border-t-[2px] border-r-[2px] border-r-[#AAA9A0]'>
 							<select className='px-[2px] text-center bg-inherit'>
 								<option value=''>특별관</option>
 								{/* 다른 옵션들 */}
@@ -93,13 +93,13 @@ const Movie = ({onSelect}) => {
 						{movies.map((movie) => (
 							<div
 								key={movie.movieId}
-								className='truncate nanum-b w-full min-h-[30px] text-start text-[12px] font-bold py-[10px] cursor-pointer  focus:bg-[#333333] focus:text-[white] focus:border-[1px] focus:border-[#5c5c5c] focus:p-[5px] focus:m-[1px]'
-								// onClick={}
+								className='regbtn flex items-center justify-center truncate nanum-b w-full min-h-[30px] text-start text-[12px] font-bold py-[12px] cursor-pointer'
+								tabIndex='0'
 								onClick={() =>
 									onSelect("movie", movie.title, movie)
 								}
 							>
-								{movie.title}
+								<div>{movie.title}</div>
 							</div>
 						))}
 					</div>

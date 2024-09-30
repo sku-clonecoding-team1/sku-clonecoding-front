@@ -94,7 +94,7 @@ const MovieDetail = () => {
 							</span>
 						</span>
 					</div>
-					<div className='flex flex-col text-[13px] pb-[20px] font-semibold'>
+					<div className='flex flex-col text-[13px] pb-[20px] font-medium'>
 						장르:{" "}
 						{movie.genres
 							? movie.genres
@@ -102,7 +102,9 @@ const MovieDetail = () => {
 									.join(", ")
 							: "정보 없음"}{" "}
 						{/* genres에서 name을 추출 */}
-						<span>개봉일: {movie.releaseDate}</span>
+						<span>
+							개봉일: {movie.releaseDate.replace(/-/g, ".")}
+						</span>
 					</div>
 					<div className='flex justify-start'>
 						<div className='flex items-center justify-center text-[14px] border-[1px] border-[black] cursor-pointer px-[20px] py-[7px] rounded-[5px] font-semibold'>
