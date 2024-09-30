@@ -90,7 +90,7 @@ const Movieinfo = () => {
 								>
 									<img
 										className='w-[197px] h-[260px] drop-shadow-2xl'
-										src={`http://localhost:8080/getMoviePage/1${movie.posterPath}`}
+										src={`https://image.tmdb.org/t/p/w500${movie.posterPath}`}
 										alt={movie.title}
 										style={{maxWidth: "100%"}}
 									/>

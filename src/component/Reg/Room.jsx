@@ -37,18 +37,20 @@ const Room = ({onSelect}) => {
 				<div className='bg-[#333333] text-white w-full py-[10px]'>
 					극장
 				</div>
-				<div className='ticketBox'>
+				<div className='m-[20px]'>
 					{/* 전체, 아트하우스, 특별관 */}
-					<div className='flex flex-row items-center justify-center w-fit mb-[3px] border-[2px]'>
-						<div className='px-[5px]'>
+					<div className='flex flex-row items-center justify-center w-fit mb-[3px]'>
+						<div className='flex items-center justify-center w-[58px] h-[28px] border-x-[2px] border-t-[2px] border-[#252526]'>
 							<button>전체</button>
 						</div>
-						<div className='px-[5px]'>
+						<div className='flex items-center justify-center w-[90px] h-[28px] border-b-[2px] border-b-[#252526] border-t-[#AAA9A0] border-t-[2px] border-r-[2px] border-r-[#AAA9A0]'>
 							<button>아트하우스</button>
+							{/* 다른 옵션들 */}
 						</div>
-						<div className='px-[5px]'>
+						<form className='flex items-center justify-center w-[88px] h-[28px] border-b-[2px] border-b-[#252526] border-t-[#AAA9A0] border-t-[2px] border-r-[2px] border-r-[#AAA9A0]'>
 							<button>특별관</button>
-						</div>
+							{/* 다른 옵션들 */}
+						</form>
 					</div>
 				</div>
 				{/* 지역선택 버튼 */}
@@ -86,7 +88,8 @@ const Room = ({onSelect}) => {
 										{m.list.map((d, i) => (
 											<div
 												key={i}
-												className='truncate nanum-b min-h-[30px] text-start text-[12px] px-[5px] py-[6px] m-[1px] text-[#333333] font-bold cursor-pointer'
+												className='regbtn flex justify-center truncate nanum-b min-h-[30px] text-start text-[12px] px-[5px] py-[6px] m-[1px] text-[#333333] font-bold cursor-pointer'
+												tabIndex='0'
 												onClick={() => {
 													getDetailTheater(i + 1);
 													onSelect("locationDetail", d);
